@@ -7,13 +7,13 @@ import Main from './src/screen/main';
 import DetailProduct from './src/screen/detailProduct';
 const Stack = createNativeStackNavigator();
 import {Provider} from 'react-redux';
-import store from './src/redux/store';
+import {store} from './src/redux/store';
 
 function App(): JSX.Element {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Main">
+        <Stack.Navigator initialRouteName="Splash">
           <Stack.Screen
             name="Splash"
             options={{headerShown: false}}

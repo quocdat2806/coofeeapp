@@ -1,23 +1,27 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {Text, TouchableOpacity} from 'react-native';
-const Button = ({isActive = false, onPress = {}, index}): JSX.Element => {
-  const activeTabStyle = isActive ? styles.buttonActive : {};
-
+const AppButton = ({
+  onPress,
+  title,
+  borderRadius,
+  marginHorizontal,
+  backgroundColor,
+  padding = 10,
+  textStyle,
+}): JSX.Element => {
   return (
-    <TouchableOpacity style={activeTabStyle} onPress={() => onPress(index)}>
-      <Text>Button</Text>
+    <TouchableOpacity
+      onPress={onPress}
+      style={{
+        marginHorizontal: marginHorizontal,
+        padding: padding,
+        backgroundColor: backgroundColor,
+        borderRadius: borderRadius,
+      }}>
+      <Text style={textStyle}>{title}</Text>
     </TouchableOpacity>
   );
 };
 
-const styles = StyleSheet.create({
-  buttonActive: {
-    backgroundColor: 'red',
-  },
-  defaultButton: {
-    //style
-  },
-});
-
-export default Button;
+export default AppButton;

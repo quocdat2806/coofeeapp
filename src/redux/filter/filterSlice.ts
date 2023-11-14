@@ -1,22 +1,21 @@
-import {createSlice} from '@reduxjs/toolkit';
-import type {RootState} from '../store';
-
-export interface CounterState {
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+export interface FilterState {
   search: string;
   filterByCategory: string;
 }
 
-const initialState: CounterState = {
-  search: '',
+const initialState: FilterState = {
+  search: 'aaa',
   filterByCategory: 'Cappuccino',
 };
 
 export const filterSlice = createSlice({
   name: 'filter',
   initialState,
-  reducers: {},
+  reducers: {
+    search: (state, action: PayloadAction<string>) => {
+      state.search = action.payload;
+    },
+  },
 });
-
-// export const selectSearch = (state: RootState) => state.filter.search;
-
 export default filterSlice.reducer;
