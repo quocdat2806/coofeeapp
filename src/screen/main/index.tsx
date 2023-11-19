@@ -1,6 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {EmojiHappy} from 'iconsax-react-native';
 import HomeScreen from '../home/index.';
 import Tab1 from '../Tab1';
 import Tab2 from '../Tab2';

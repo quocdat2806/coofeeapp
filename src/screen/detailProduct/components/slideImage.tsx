@@ -26,7 +26,7 @@ const SlideImage = ({product, handleBack}): JSX.Element => {
             <Text style={style.textName}>{product.name}</Text>
             <Text style={style.textDesc}>{product.description}</Text>
           </View>
-          <View style={{}}>
+          <View style={style.starWrapper}>
             <StarSvg width={16} height={16} />
             <Text style={style.textStar}>4.9</Text>
           </View>
