@@ -1,3 +1,4 @@
+// page splash screen
 export const pages = [
   {
     image:
@@ -16,7 +17,29 @@ export const pages = [
     image:
       'https://media.istockphoto.com/id/1271386167/vi/anh/c%C3%A0-ph%C3%AA.jpg?s=612x612&w=0&k=20&c=Q3ok85emjnUTMd7PIMZiMSRh1J853we5A9UGVvpuL4w=',
     title: ['Good Coffee 3 ', 'Good Friends 3', 'let it blends 3'],
-
     description: 'description 3',
+  },
+];
+
+// category
+import CappuccinoSvg from '../assets/img/cappuccino.svg';
+import ColdBrewSvg from '../assets/img/coldbrew.svg';
+import ExpressoSvg from '../assets/img/expresso.svg';
+
+export const categories = [
+  {
+    name: 'Cappuccino',
+    icon: CappuccinoSvg,
+    category: 'coffee',
+  },
+  {
+    name: 'Cold Brew',
+    icon: ColdBrewSvg,
+    category: 'capuccino',
+  },
+  {
+    name: 'Expresso',
+    icon: ExpressoSvg,
+    category: 'coldbrew',
   },
 ];

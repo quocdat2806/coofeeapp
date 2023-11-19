@@ -1,20 +1,19 @@
-// import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-// export interface ProductState {
-//   product: [];
-//   filterByCategory: string;
-// }
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+export interface ProductState {
+  products: any;
+}
 
-// const initialState: ProductState = {
-//   product: [],
-// };
+const initialState: ProductState = {
+  products: [],
+};
 
-// export const filterSlice = createSlice({
-//   name: 'product',
-//   initialState,
-//   reducers: {
-//     search: (state, action: PayloadAction<string>) => {
-//       state.search = action.payload;
-//     },
-//   },
-// });
-// export default filterSlice.reducer;
+export const productSlice = createSlice({
+  name: 'products',
+  initialState,
+  reducers: {
+    setData: (state, action: PayloadAction<[]>) => {
+      state.products = action.payload;
+    },
+  },
+});
+export default productSlice;

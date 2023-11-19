@@ -1,25 +1,64 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {StyleSheet} from 'react-native';
-import {Text, TouchableOpacity} from 'react-native';
-const AppButton = ({
+import {TouchableOpacity, Text} from 'react-native';
+import {View} from 'react-native';
+
+interface AppButtonProps {
+  onPress: () => {};
+  index?: number;
+  title: string;
+  borderRadius?: number;
+  marginHorizontal?: number;
+  backgroundColor?: string;
+  padding?: number;
+  style?: {};
+  hasBorder?: boolean;
+  isActive: boolean;
+  children: {};
+}
+const AppButton: React.FC<AppButtonProps> = ({
   onPress,
   title,
-  borderRadius,
-  marginHorizontal,
-  backgroundColor,
+  borderRadius = 0,
+  marginHorizontal = 0,
+  backgroundColor = 'transparent',
   padding = 10,
-  textStyle,
-}): JSX.Element => {
+  style = {},
+  isActive = false,
+  children,
+  index,
+  hasBorder,
+}) => {
   return (
     <TouchableOpacity
-      onPress={onPress}
+      onPress={() => onPress(index)}
+      // eslint-disable-next-line react-native/no-inline-styles
       style={{
+        borderWidth: hasBorder ? 1 : 0,
         marginHorizontal: marginHorizontal,
         padding: padding,
-        backgroundColor: backgroundColor,
+        backgroundColor: isActive ? '#846046' : backgroundColor,
         borderRadius: borderRadius,
       }}>
-      <Text style={textStyle}>{title}</Text>
+      <View
+        // eslint-disable-next-line react-native/no-inline-styles
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+          columnGap: 10,
+        }}>
+        {children}
+        <Text
+          style={[
+            style,
+            {
+              color: isActive ? '#fff' : 'black',
+            },
+          ]}>
+          {title}
+        </Text>
+      </View>
     </TouchableOpacity>
   );
 };

@@ -1,12 +1,10 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 export interface FilterState {
   search: string;
-  filterByCategory: string;
 }
 
 const initialState: FilterState = {
-  search: 'aaa',
-  filterByCategory: 'Cappuccino',
+  search: '',
 };
 
 export const filterSlice = createSlice({
@@ -18,4 +16,5 @@ export const filterSlice = createSlice({
     },
   },
 });
-export default filterSlice.reducer;
+
+export default filterSlice;
