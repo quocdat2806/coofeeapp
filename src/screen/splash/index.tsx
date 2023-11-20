@@ -31,19 +31,22 @@ const SplashScreen: React.FC<SplashScreenProps> = ({
         style={pagerViewWrapper}
         initialPage={0}>
         {pages.map((page, index) => (
-          <RenderPage key={index} page={page} />
+          <RenderBackGroundPage key={index} pathImage={page.image} />
         ))}
       </PagerView>
       <RenderContent
+        description={pages[currentPage].description}
+        title={pages[currentPage].title}
         onPress={openMainPage}
         indexDotActive={currentPage}
-        contentPage={pages[currentPage]}
       />
     </View>
   );
 };
-
-function RenderPage({page}) {
+interface RenderBackGroundInterface {
+  pathImage: string;
+}
+function RenderBackGroundPage(pathImage: RenderBackGroundInterface) {
   const styleBackGroundImage = StyleSheet.create({
     image: {
       flex: 1,
@@ -53,13 +56,19 @@ function RenderPage({page}) {
     <ImageBackground
       style={styleBackGroundImage.image}
       source={{
-        uri: `${page.image}`,
+        uri: `${pathImage.pathImage}`,
       }}
     />
   );
 }
+interface RenderContentInterface {
+  title: string[];
+  description: string;
+  indexDotActive: number;
+  onPress: () => void | any;
+}
 
-function RenderContent({contentPage, indexDotActive, onPress}): JSX.Element {
+function RenderContent(props: RenderContentInterface): JSX.Element {
   const styleContent = StyleSheet.create({
     content: {
       position: 'absolute',
@@ -72,13 +81,16 @@ function RenderContent({contentPage, indexDotActive, onPress}): JSX.Element {
       alignItems: 'center',
       justifyContent: 'center',
       gap: 3,
-      marginTop: 16,
+      marginTop: 24,
       marginBottom: 16,
+    },
+    descWrapper: {
+      marginTop: 20,
     },
   });
   return (
     <View style={styleContent.content}>
-      {contentPage.title.map((titleItem, index) => (
+      {props.title.map((titleItem: string, index: number) => (
         <AppText
           fontSize={28}
           color={COLORS.GREY}
@@ -86,20 +98,17 @@ function RenderContent({contentPage, indexDotActive, onPress}): JSX.Element {
           title={titleItem}
         />
       ))}
-      <AppText
-        fontSize={12}
-        color={COLORS.WHITE}
-        title="The best grain, the finest roast, the most powerful flavor."
-      />
+      <View style={styleContent.descWrapper}>
+        <AppText fontSize={14} color={COLORS.WHITE} title={props.description} />
+      </View>
       <View style={styleContent.dotWrapper}>
         {pages.map((_, index) => (
-          <DotIndicator isActive={indexDotActive === index} />
+          <DotIndicator key={index} isActive={props.indexDotActive === index} />
         ))}
       </View>
-
       <AppButton
         fontWeight="700"
-        onPress={onPress}
+        onPress={props.onPress}
         marginHorizontal={16}
         borderRadius={30}
         padding={20}
