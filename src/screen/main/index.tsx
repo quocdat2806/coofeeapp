@@ -1,9 +1,10 @@
-/* eslint-disable react/react-in-jsx-scope */
+import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import HomeScreen from '../home/index.';
-import Tab1 from '../Tab1';
-import Tab2 from '../Tab2';
-import Tab3 from '../Tab3';
+import HomeScreen from './home';
+import Tab1 from './tab1';
+import Tab2 from './tab2';
+import Tab3 from './tab3';
+
 const Tab = createBottomTabNavigator();
 
 function Main() {
@@ -22,4 +23,5 @@ function Main() {
     </Tab.Navigator>
   );
 }
+
 export default Main;
