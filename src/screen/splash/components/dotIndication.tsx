@@ -18,5 +18,4 @@ const style = (isActive: boolean) => {
     },
   });
 };
-
 export default DotIndicator;

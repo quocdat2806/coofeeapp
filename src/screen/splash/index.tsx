@@ -112,7 +112,7 @@ function RenderContent(props: RenderContentInterface): JSX.Element {
         marginHorizontal={16}
         borderRadius={30}
         padding={20}
-        isActive
+        backgroundColor={COLORS.BROWN}
         fontSize={20}
         textColor={COLORS.WHITE}
         title="Get started"
