@@ -1,63 +1,64 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {TouchableOpacity, Text} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 import {View} from 'react-native';
+import styleButton from './style';
+import {TextStyle} from 'react-native';
+import AppText from '../text';
+import {COLORS} from '../../constants/color';
 
 interface AppButtonProps {
-  onPress: () => {};
-  index?: number;
-  title: string;
+  onPress?: () => {};
+  title?: string;
   borderRadius?: number;
   marginHorizontal?: number;
   backgroundColor?: string;
   padding?: number;
-  style?: {};
   hasBorder?: boolean;
-  isActive: boolean;
-  children: {};
+  isActive?: boolean;
+  children?: any;
+  textColor?: string;
+  fontSize?: TextStyle['fontSize'];
+  fontWeight?: TextStyle['fontWeight'];
 }
 const AppButton: React.FC<AppButtonProps> = ({
   onPress,
-  title,
+  title = '',
   borderRadius = 0,
   marginHorizontal = 0,
   backgroundColor = 'transparent',
   padding = 10,
-  style = {},
   isActive = false,
   children,
-  index,
-  hasBorder,
+  hasBorder = false,
+  textColor,
+  fontSize,
+  fontWeight,
 }) => {
+  const buttonStyle = styleButton({
+    marginHorizontal,
+    borderRadius,
+    backgroundColor,
+    padding,
+    isActive,
+    hasBorder,
+  });
   return (
-    <TouchableOpacity
-      onPress={() => onPress(index)}
-      // eslint-disable-next-line react-native/no-inline-styles
-      style={{
-        borderWidth: hasBorder ? 1 : 0,
-        marginHorizontal: marginHorizontal,
-        padding: padding,
-        backgroundColor: isActive ? '#846046' : backgroundColor,
-        borderRadius: borderRadius,
-      }}>
+    <TouchableOpacity onPress={onPress} style={buttonStyle.buttonStyle}>
       <View
-        // eslint-disable-next-line react-native/no-inline-styles
         style={{
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'center',
-          columnGap: 10,
+          columnGap: 4,
         }}>
         {children}
-        <Text
-          style={[
-            style,
-            {
-              color: isActive ? '#fff' : 'black',
-            },
-          ]}>
-          {title}
-        </Text>
+        <AppText
+          title={title}
+          fontWeight={fontWeight}
+          color={isActive ? COLORS.WHITE : textColor}
+          fontSize={fontSize}
+        />
       </View>
     </TouchableOpacity>
   );
