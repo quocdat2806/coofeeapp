@@ -1,21 +1,19 @@
 import React, {useState, useCallback} from 'react';
-import {View} from 'react-native';
+import {ImageBackground, StyleSheet, View} from 'react-native';
 import PagerView from 'react-native-pager-view';
 import style from './style';
 import AppButton from '../../component/button';
-import {pages} from '../../constants';
-import SubPageSplash from './components/subPage';
+import {pages} from '../../constants/fakeData';
 import DotIndicator from './components/dotIndication';
-
+import AppText from '../../component/text';
+import {COLORS} from '../../constants/color';
 interface SplashScreenProps {
-  navigation: any; // Replace 'any' with the actual type of your navigation prop
+  navigation: any;
 }
-
 const SplashScreen: React.FC<SplashScreenProps> = ({
   navigation,
 }): JSX.Element => {
-  const {container, pagerViewWrapper, dotWrapper, textButton, buttonWrapper} =
-    style;
+  const {container, pagerViewWrapper} = style;
   const [currentPage, setCurrentPage] = useState(0);
 
   const openMainPage = useCallback(() => {
@@ -32,35 +30,86 @@ const SplashScreen: React.FC<SplashScreenProps> = ({
         onPageScroll={handleNextPageChange}
         style={pagerViewWrapper}
         initialPage={0}>
-        {pages.map((page, indexPage) => (
-          <SubPageSplash
-            key={indexPage}
-            listTitle={page.title}
-            pathImage={page.image}
-            description={page.description}
-          />
+        {pages.map((page, index) => (
+          <RenderPage key={index} page={page} />
         ))}
       </PagerView>
-
-      <View style={dotWrapper}>
-        {pages.map((_, index) => (
-          <DotIndicator isActive={currentPage === index} key={index} />
-        ))}
-      </View>
-
-      <View style={buttonWrapper}>
-        <AppButton
-          isActive
-          onPress={openMainPage}
-          style={textButton}
-          padding={20}
-          marginHorizontal={10}
-          borderRadius={40}
-          title="Get started"
-        />
-      </View>
+      <RenderContent
+        onPress={openMainPage}
+        indexDotActive={currentPage}
+        contentPage={pages[currentPage]}
+      />
     </View>
   );
 };
+
+function RenderPage({page}) {
+  const styleBackGroundImage = StyleSheet.create({
+    image: {
+      flex: 1,
+    },
+  });
+  return (
+    <ImageBackground
+      style={styleBackGroundImage.image}
+      source={{
+        uri: `${page.image}`,
+      }}
+    />
+  );
+}
+
+function RenderContent({contentPage, indexDotActive, onPress}): JSX.Element {
+  const styleContent = StyleSheet.create({
+    content: {
+      position: 'absolute',
+      bottom: 30,
+      left: 0,
+      right: 0,
+    },
+    dotWrapper: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: 3,
+      marginTop: 16,
+      marginBottom: 16,
+    },
+  });
+  return (
+    <View style={styleContent.content}>
+      {contentPage.title.map((titleItem, index) => (
+        <AppText
+          fontSize={28}
+          color={COLORS.GREY}
+          key={index}
+          title={titleItem}
+        />
+      ))}
+      <AppText
+        fontSize={12}
+        color={COLORS.WHITE}
+        title="The best grain, the finest roast, the most powerful flavor."
+      />
+      <View style={styleContent.dotWrapper}>
+        {pages.map((_, index) => (
+          <DotIndicator isActive={indexDotActive === index} />
+        ))}
+      </View>
+
+      <AppButton
+        fontWeight="700"
+        onPress={onPress}
+        marginHorizontal={16}
+        borderRadius={30}
+        padding={20}
+        isActive
+        fontSize={20}
+        textColor={COLORS.WHITE}
+        title="Get started"
+      />
+    </View>
+  );
+}
 
 export default SplashScreen;
