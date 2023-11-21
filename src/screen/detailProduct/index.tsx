@@ -1,20 +1,19 @@
 import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
-import CoffeeSvg from '../../assets/img/coffeee.svg';
-import ChocolateSvg from '../../assets/img/chocolate.svg';
-import AppButton from '../../component/button';
+import {View, StyleSheet} from 'react-native';
 import SlideImage from './components/slideImage';
 import ContentProduct from './components/content';
+import {COLORS} from '../../constants/color';
 
 const DetailProduct = ({route, navigation}): JSX.Element => {
   function handleBack() {
     navigation.goBack();
   }
   const product = route.params;
+  product.onPress = handleBack;
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
-        <SlideImage product={product} handleBack={handleBack} />
+        <SlideImage product={product} />
       </View>
       <View style={styles.contentWrapper}>
         <ContentProduct />
@@ -39,7 +38,7 @@ const styles = StyleSheet.create({
     zIndex: 999,
     borderTopRightRadius: 40,
     borderTopLeftRadius: 40,
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.WHITE,
   },
 });
 export default DetailProduct;
