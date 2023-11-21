@@ -1,10 +1,11 @@
 import React, {useMemo, useState} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import CategoryItem from './categoryItem';
-import CoffeeSvg from '../../../assets/img/coffeee.svg';
-import ChocolateSvg from '../../../assets/img/chocolate.svg';
+import CoffeeSvg from '../../../assets/svg/coffeee.svg';
+import ChocolateSvg from '../../../assets/svg/chocolate.svg';
 import AppButton from '../../../component/button';
-
+import AppText from '../../../component/text';
+import {COLORS} from '../../../constants/color';
 interface ContentProductProps {}
 
 const ContentProduct: React.FC<ContentProductProps> = (): JSX.Element => {
@@ -13,13 +14,12 @@ const ContentProduct: React.FC<ContentProductProps> = (): JSX.Element => {
   function handleChangeSize(index: number) {
     setSizeIndex(index);
   }
-
   const size: string[] = useMemo(() => {
     return ['Small', 'Medium', 'Large'];
   }, []);
 
   return (
-    <>
+    <View style={style.container}>
       <View style={style.categoryWrapper}>
         <CategoryItem title="Coffee" hasBorderRight={true} icon={CoffeeSvg} />
         <CategoryItem
@@ -29,19 +29,18 @@ const ContentProduct: React.FC<ContentProductProps> = (): JSX.Element => {
         />
         <CategoryItem title="Medium Roasted" hasBorderRight={false} />
       </View>
-      <Text style={style.textCoffeeSize}>Coffee Size</Text>
+      <AppText
+        fontWeight="700"
+        fontSize={20}
+        title="Coffee Size"
+        lineHeight={32}
+        textAlign="left"
+      />
       <View style={style.sizeWrapper}>
         {size.map((s, index) => {
           return (
-            <View
-              key={index}
-              // eslint-disable-next-line react-native/no-inline-styles
-              style={{
-                minWidth: 100,
-                marginTop: 10,
-              }}>
+            <View key={index} style={style.sizeWrapperContent}>
               <AppButton
-                index={index}
                 hasBorder={sizeIndex !== index}
                 onPress={() => handleChangeSize(index)}
                 isActive={sizeIndex === index}
@@ -54,66 +53,63 @@ const ContentProduct: React.FC<ContentProductProps> = (): JSX.Element => {
         })}
       </View>
       <View style={style.textAboutWrapper}>
-        <Text style={style.textAbout}>About</Text>
-        <Text style={style.textDesc}>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur
+        <AppText
+          fontSize={22}
+          fontWeight="700"
+          textAlign="left"
+          title="About"
+          lineHeight={48}
+        />
+        <AppText
+          title="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur
           architecto nisi distinctio quos deserunt velit corrupti voluptates
           expedita! Iure facilis aliquam a voluptates alias facere laborum
-          recusandae velit architecto dolore.
-        </Text>
+          recusandae velit architecto dolore."
+          fontSize={14}
+          fontWeight="400"
+          lineHeight={16}
+          textAlign="left"
+        />
       </View>
       <View style={style.addButtonWrapper}>
         <AppButton
+          fontSize={20}
           padding={22}
           borderRadius={40}
           marginHorizontal={16}
           title="Add To Cart"
           isActive
-          style={style.addButton}
         />
       </View>
-    </>
+    </View>
   );
 };
 
 const style = StyleSheet.create({
+  container: {
+    padding: 16,
+  },
   categoryWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    margin: 18,
     borderRadius: 999,
-    backgroundColor: '#a6a6aa36',
-  },
-  textCoffeeSize: {
-    marginHorizontal: 20,
+    backgroundColor: COLORS.GREY_2,
   },
   sizeWrapper: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginHorizontal: 20,
+    marginTop: 10,
+  },
+  sizeWrapperContent: {
+    minWidth: 100,
   },
   textAboutWrapper: {
-    marginHorizontal: 20,
     marginTop: 30,
-  },
-  textAbout: {
-    color: '#000',
-    fontSize: 22,
-    fontWeight: '700',
-  },
-  textDesc: {
-    color: '#000',
-    fontSize: 14,
-    fontWeight: '400',
-    lineHeight: 18,
   },
   addButtonWrapper: {
     marginTop: 10,
-  },
-  addButton: {
-    fontSize: 20,
   },
 });
 
