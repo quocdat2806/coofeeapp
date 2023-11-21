@@ -1,7 +1,7 @@
 import React from 'react';
-import StarSvg from '../../../../../assets/img/starrr.svg';
-import AddSvg from '../../../../../assets/img/add.svg';
-import {View, Platform, Image, Dimensions, StyleSheet} from 'react-native';
+import StarSvg from '../../../../../assets/svg/starrr.svg';
+import AddSvg from '../../../../../assets/svg/add.svg';
+import {View, Image, Dimensions, StyleSheet} from 'react-native';
 import {COLORS} from '../../../../../constants/color';
 import AppText from '../../../../../component/text';
 const {width} = Dimensions.get('window');
@@ -17,7 +17,6 @@ interface ProductItem {
 
 interface RenderProductItemProps {
   product: ProductItem;
-  onPress?: () => void | any;
 }
 
 const RenderProductItem = ({product}: RenderProductItemProps): JSX.Element => {
@@ -81,21 +80,6 @@ const style = StyleSheet.create({
     marginTop: 20,
     borderRadius: 14,
     padding: 10,
-    shadowColor: COLORS.SHADOW_COLOR,
-
-    ...Platform.select({
-      ios: {
-        shadowOffset: {
-          width: 6,
-          height: 6,
-        },
-        shadowOpacity: 0.6,
-        shadowRadius: 8,
-      },
-      android: {
-        elevation: 16,
-      },
-    }),
   },
   imageWrapper: {
     aspectRatio: 1.2,
