@@ -81,7 +81,7 @@ const style = StyleSheet.create({
     marginTop: 20,
     borderRadius: 14,
     padding: 10,
-    shadowColor: '#F5F5F5',
+    shadowColor: COLORS.SHADOW_COLOR,
 
     ...Platform.select({
       ios: {
