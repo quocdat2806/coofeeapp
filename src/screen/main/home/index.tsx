@@ -1,16 +1,17 @@
 import React, {useState, useEffect} from 'react';
-import {View, FlatList, ScrollView} from 'react-native';
+import {View, FlatList, ScrollView, TouchableOpacity} from 'react-native';
 import Header from './components/Header';
 import style from './style';
 import AppText from '../../../component/text';
 import Search from './components/Search';
-import FireSvg from './../../../assets/img/fire.svg';
+import FireSvg from './../../../assets/svg/fire.svg';
 import RenderCategoryItem from './components/RenderCategoryItem';
 import RenderProductItem from './components/RenderProductItem';
-import {categories, specialOffer} from '../../../constants/fakeData';
+import {CATEGORIES, SPECIALOFFERS} from '../../../constants/fakeData';
 import {useAppSelector, useAppDispatch} from '../../../hooks';
 import {productSlice} from '../../../redux/product/productSlice';
 import RenderSpecialOfferItem from './components/RenderSpecialOfferItem';
+import {API_HOME_PRODUCT} from '../../../api';
 const HomeScreen = ({navigation}): JSX.Element => {
   const [currentCategoryTab, setCurrentCategoryTab] = useState<number>(0);
   function handleChangTabCategory(index: number) {
@@ -24,14 +25,15 @@ const HomeScreen = ({navigation}): JSX.Element => {
     products.filter(
       product =>
         product.name.includes(search) &&
-        product.category === categories[currentCategoryTab].category,
+        product.category === CATEGORIES[currentCategoryTab].category,
     );
   useEffect(() => {
-    fetch('https://6555745a84b36e3a431dc45f.mockapi.io/api/v1/products')
+    fetch(API_HOME_PRODUCT)
       .then(res => res.json())
       .then(data => {
         dispatch(productSlice.actions.setData(data));
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   function navigateDetailProduct(product: any) {
     navigation.navigate('DetailProduct', {...product});
@@ -58,7 +60,7 @@ const HomeScreen = ({navigation}): JSX.Element => {
           textAlign="left"
         />
         <View style={categoryWrapper}>
-          {categories.map((category, index) => {
+          {CATEGORIES.map((category, index) => {
             const Icon = category.icon;
             return (
               <RenderCategoryItem
@@ -79,11 +81,9 @@ const HomeScreen = ({navigation}): JSX.Element => {
             keyExtractor={(_, index) => index.toString()}
             data={filterProduct}
             renderItem={({item, index}) => (
-              <RenderProductItem
-                onPress={() => navigateDetailProduct(item)}
-                product={item}
-                key={index}
-              />
+              <TouchableOpacity onPress={() => navigateDetailProduct(item)}>
+                <RenderProductItem product={item} key={index} />
+              </TouchableOpacity>
             )}
           />
         </View>
@@ -97,7 +97,7 @@ const HomeScreen = ({navigation}): JSX.Element => {
           />
           <FireSvg width={20} height={20} />
         </View>
-        {specialOffer.map((special, index) => (
+        {SPECIALOFFERS.map((special, index) => (
           <RenderSpecialOfferItem key={index} product={special} />
         ))}
       </View>
