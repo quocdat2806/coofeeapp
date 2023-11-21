@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 export interface ProductState {
-  products: any;
+  products: any[];
 }
 
 const initialState: ProductState = {

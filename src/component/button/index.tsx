@@ -8,7 +8,7 @@ import AppText from '../text';
 import {COLORS} from '../../constants/color';
 
 interface AppButtonProps {
-  onPress?: () => {};
+  onPress?: () => void | any;
   title?: string;
   borderRadius?: number;
   marginHorizontal?: number;
