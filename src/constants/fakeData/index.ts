@@ -1,5 +1,5 @@
 // page splash screen
-export const pages = [
+export const PAGES = [
   {
     image:
       'https://i.pinimg.com/originals/bf/24/47/bf24476728abedad530e71fced5c7e51.jpg',
@@ -22,11 +22,11 @@ export const pages = [
 ];
 
 // category
-import CappuccinoSvg from '../../assets/img/cappuccino.svg';
-import ColdBrewSvg from '../../assets/img/coldbrew.svg';
-import ExpressoSvg from '../../assets/img/expresso.svg';
+import CappuccinoSvg from '../../assets/svg/cappuccino.svg';
+import ColdBrewSvg from '../../assets/svg/coldbrew.svg';
+import ExpressoSvg from '../../assets/svg/expresso.svg';
 
-export const categories = [
+export const CATEGORIES = [
   {
     name: 'Cappuccino',
     icon: CappuccinoSvg,
@@ -46,7 +46,7 @@ export const categories = [
 
 // special offer
 
-export const specialOffer = [
+export const SPECIALOFFERS = [
   {
     image: 'https://cloudmartvn.com/image/catalog/ca-phe-sua-da-2.jpg',
     description: 'Buy 1 get 1 free if you buy with Gopay',
