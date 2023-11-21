@@ -3,7 +3,7 @@ import {ImageBackground, StyleSheet, View} from 'react-native';
 import PagerView from 'react-native-pager-view';
 import style from './style';
 import AppButton from '../../component/button';
-import {pages} from '../../constants/fakeData';
+import {PAGES} from '../../constants/fakeData';
 import DotIndicator from './components/dotIndication';
 import AppText from '../../component/text';
 import {COLORS} from '../../constants/color';
@@ -30,13 +30,13 @@ const SplashScreen: React.FC<SplashScreenProps> = ({
         onPageScroll={handleNextPageChange}
         style={pagerViewWrapper}
         initialPage={0}>
-        {pages.map((page, index) => (
+        {PAGES.map((page, index) => (
           <RenderBackGroundPage key={index} pathImage={page.image} />
         ))}
       </PagerView>
       <RenderContent
-        description={pages[currentPage].description}
-        title={pages[currentPage].title}
+        description={PAGES[currentPage].description}
+        title={PAGES[currentPage].title}
         onPress={openMainPage}
         indexDotActive={currentPage}
       />
@@ -102,7 +102,7 @@ function RenderContent(props: RenderContentInterface): JSX.Element {
         <AppText fontSize={14} color={COLORS.WHITE} title={props.description} />
       </View>
       <View style={styleContent.dotWrapper}>
-        {pages.map((_, index) => (
+        {PAGES.map((_, index) => (
           <DotIndicator key={index} isActive={props.indexDotActive === index} />
         ))}
       </View>
