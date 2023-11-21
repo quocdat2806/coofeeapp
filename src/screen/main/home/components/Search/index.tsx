@@ -1,14 +1,28 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {View, StyleSheet, TextInput} from 'react-native';
-import SearchSvg from '../../../../../assets/img/search.svg';
-import SettingSvg from '../../../../../assets/img/setting.svg';
+import SearchSvg from '../../../../../assets/svg/search.svg';
+import SettingSvg from '../../../../../assets/svg/setting.svg';
 import {COLORS} from '../../../../../constants/color';
+import {useAppDispatch} from '../../../../../hooks';
+import filterSlice from '../../../../../redux/filter/filterSlice';
 const Search = (): JSX.Element => {
+  const inputRef = useRef();
+  const dispatch = useAppDispatch();
+
+  function handleTextChange(e) {
+    inputRef.current = e;
+    dispatch(filterSlice.actions.search(inputRef.current));
+  }
   return (
     <View style={style.container}>
       <View style={style.searchWrapper}>
         <SearchSvg width={24} height={24} />
-        <TextInput style={style.input} placeholder="Search Coffee" />
+        <TextInput
+          ref={inputRef}
+          onChangeText={handleTextChange}
+          style={style.input}
+          placeholder="Search Coffee"
+        />
         <SettingSvg width={24} height={24} />
       </View>
     </View>
