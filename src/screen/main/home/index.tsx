@@ -28,11 +28,12 @@ const HomeScreen = ({navigation}): JSX.Element => {
         product.category === CATEGORIES[currentCategoryTab].category,
     );
   useEffect(() => {
-    fetch(API_HOME_PRODUCT)
-      .then(res => res.json())
-      .then(data => {
-        dispatch(productSlice.actions.setData(data));
-      });
+    filterProduct &&
+      fetch(API_HOME_PRODUCT)
+        .then(res => res.json())
+        .then(data => {
+          dispatch(productSlice.actions.setData(data));
+        });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   function navigateDetailProduct(product: any) {
