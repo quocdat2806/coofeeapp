@@ -43,3 +43,22 @@ export const categories = [
     category: 'expresso',
   },
 ];
+
+// special offer
+
+export const specialOffer = [
+  {
+    image: 'https://cloudmartvn.com/image/catalog/ca-phe-sua-da-2.jpg',
+    description: 'Buy 1 get 1 free if you buy with Gopay',
+  },
+  {
+    image:
+      'https://chefjob.vn/wp-content/uploads/2020/07/cappuccino-cafe-cua-y.jpg',
+    description: 'Buy 1 get 1 free if you buy with Gopay',
+  },
+  {
+    image:
+      'https://chefjob.vn/wp-content/uploads/2020/07/cappuccino-co-lop-bot-sua-bong-benh-hon-latte.jpg',
+    description: 'Buy 1 get 1 free if you buy with Gopay',
+  },
+];
