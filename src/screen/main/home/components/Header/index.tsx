@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import AvatarSvg from '../../../../../assets/img/avatar.svg';
-import LocationSvg from '../../../../../assets/img/location.svg';
-import NotificationSvg from '../../../../../assets/img/notification.svg';
+import AvatarSvg from '../../../../../assets/svg/avatar.svg';
+import LocationSvg from '../../../../../assets/svg/location.svg';
+import NotificationSvg from '../../../../../assets/svg/notification.svg';
 import AppText from '../../../../../component/text';
 
 const Header = (): JSX.Element => {
