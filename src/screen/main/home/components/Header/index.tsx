@@ -1,32 +1,38 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import AvatarSvg from '../../../../../assets/svg/avatar.svg';
 import LocationSvg from '../../../../../assets/svg/location.svg';
 import NotificationSvg from '../../../../../assets/svg/notification.svg';
+import globalStyle from '../../../../../globalStyle';
 import AppText from '../../../../../component/text';
-
 const Header = (): JSX.Element => {
   return (
-    <View style={[style['d-flex'], style.headerWrapper]}>
+    <View
+      style={[
+        globalStyle['d-flex'],
+        style['justify-content'],
+        style.headerWrapper,
+      ]}>
       <AvatarSvg color="red" width={60} height={60} />
-      <View style={style['d-flex']}>
+      <View style={[globalStyle['d-flex'], style['justify-content']]}>
         <LocationSvg color="red" width={20} height={20} />
         <AppText
+          presetSize="h5"
+          presetFontWeight="800"
           title="Ha Noi Viet Nam"
-          fontSize={12}
-          fontWeight="800"
-          lineHeight={12}
+          style={style.textLocation}
         />
       </View>
-      <NotificationSvg color="red" width={21} height={19} />
+      <NotificationSvg color="red" width={24} height={24} />
     </View>
   );
 };
 const style = StyleSheet.create({
-  'd-flex': {
+  'justify-content': {
     justifyContent: 'space-between',
-    flexDirection: 'row',
-    alignItems: 'center',
+  },
+  textLocation: {
+    lineHeight: 12,
   },
   headerWrapper: {
     marginTop: 20,

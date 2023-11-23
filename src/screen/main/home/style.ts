@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 const style = StyleSheet.create({
   container: {
@@ -6,14 +6,17 @@ const style = StyleSheet.create({
     flex: 1,
     marginBottom: 20,
   },
+  textDefault: {
+    fontSize: 20,
+    fontWeight: '700',
+    textAlign: 'left',
+    lineHeight: 24,
+  },
   categoryWrapper: {
-    flexDirection: 'row',
     marginTop: 20,
     justifyContent: 'space-between',
   },
   specialOfferWrapper: {
-    flexDirection: 'row',
-    alignItems: 'center',
     marginTop: 10,
     columnGap: 6,
   },

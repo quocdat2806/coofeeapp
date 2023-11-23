@@ -1,10 +1,11 @@
-import React, {useRef} from 'react';
-import {View, StyleSheet, TextInput} from 'react-native';
+import React, { useRef } from 'react';
+import { View, StyleSheet, TextInput } from 'react-native';
 import SearchSvg from '../../../../../assets/svg/search.svg';
 import SettingSvg from '../../../../../assets/svg/setting.svg';
-import {COLORS} from '../../../../../constants/color';
-import {useAppDispatch} from '../../../../../hooks';
+import { COLORS } from '../../../../../constants/color';
+import { useAppDispatch } from '../../../../../hooks';
 import filterSlice from '../../../../../redux/filter/filterSlice';
+import globalStyle from '../../../../../globalStyle';
 const Search = (): JSX.Element => {
   const inputRef = useRef();
   const dispatch = useAppDispatch();
@@ -15,7 +16,7 @@ const Search = (): JSX.Element => {
   }
   return (
     <View style={style.container}>
-      <View style={style.searchWrapper}>
+      <View style={[globalStyle['d-flex'], style.searchWrapper]}>
         <SearchSvg width={24} height={24} />
         <TextInput
           ref={inputRef}
@@ -40,9 +41,7 @@ const style = StyleSheet.create({
   },
   searchWrapper: {
     marginHorizontal: 16,
-    alignItems: 'center',
     justifyContent: 'space-between',
-    flexDirection: 'row',
   },
   input: {
     marginLeft: 4,
