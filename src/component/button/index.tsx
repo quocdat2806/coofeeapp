@@ -1,66 +1,46 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {TouchableOpacity} from 'react-native';
-import {View} from 'react-native';
-import styleButton from './style';
-import {TextStyle} from 'react-native';
+import { TouchableOpacity, Text } from 'react-native';
+import { Shadow } from 'react-native-shadow-2';
+import { COLORS } from '../../constants/color';
 import AppText from '../text';
-import {COLORS} from '../../constants/color';
-
 interface AppButtonProps {
   onPress?: () => void | any;
   title?: string;
-  borderRadius?: number;
-  marginHorizontal?: number;
-  backgroundColor?: string;
-  padding?: number;
-  hasBorder?: boolean;
+  hasShadow?: boolean;
   isActive?: boolean;
+  styleButton?: any;
+  styleTextButton?: any;
   children?: any;
-  textColor?: string;
-  fontSize?: TextStyle['fontSize'];
-  fontWeight?: TextStyle['fontWeight'];
 }
+function CustomButton({ hasShadow = false, children }) {
+  if (hasShadow) {
+    return <Shadow>{children}</Shadow>;
+  }
+  return children;
+}
+
 const AppButton: React.FC<AppButtonProps> = ({
   onPress,
   title = '',
-  borderRadius = 0,
-  marginHorizontal = 0,
-  backgroundColor = 'transparent',
-  padding = 10,
+  styleButton,
+  styleTextButton,
   isActive = false,
+  hasShadow = false,
   children,
-  hasBorder = false,
-  textColor,
-  fontSize,
-  fontWeight,
 }) => {
-  const buttonStyle = styleButton({
-    marginHorizontal,
-    borderRadius,
-    backgroundColor,
-    padding,
-    isActive,
-    hasBorder,
-  });
   return (
-    <TouchableOpacity onPress={onPress} style={buttonStyle.buttonStyle}>
-      <View
+    <CustomButton hasShadow={hasShadow}>
+      <TouchableOpacity
+        onPress={onPress}
         style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'center',
-          columnGap: 4,
+          ...styleButton,
+          backgroundColor: isActive
+            ? COLORS.BROWN
+            : styleButton.backgroundColor,
         }}>
-        {children}
-        <AppText
-          title={title}
-          fontWeight={fontWeight}
-          color={isActive ? COLORS.WHITE : textColor}
-          fontSize={fontSize}
-        />
-      </View>
-    </TouchableOpacity>
+        {children || <AppText title={title} style={styleTextButton} />}
+      </TouchableOpacity>
+    </CustomButton>
   );
 };
 
