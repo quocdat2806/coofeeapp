@@ -1,8 +1,7 @@
-/* eslint-disable react/react-in-jsx-scope */
-
+import React from 'react';
 import {Provider} from 'react-redux';
 import {persistor, store} from './src/redux/store';
-import AppNavigation from './src/navigation';
+import {AppNavigation} from './src/navigation';
 import {PersistGate} from 'redux-persist/integration/react';
 function App() {
   return (
