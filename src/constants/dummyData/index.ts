@@ -1,4 +1,10 @@
+// category
+import CappuccinoSvg from '../../assets/svg/cappuccino.svg';
+import ColdBrewSvg from '../../assets/svg/coldbrew.svg';
+import ExpressoSvg from '../../assets/svg/expresso.svg';
+
 // page splash screen
+
 export const PAGES = [
   {
     image:
@@ -20,11 +26,6 @@ export const PAGES = [
     description: 'The best grain, the finest roast, the most powerful flavor.',
   },
 ];
-
-// category
-import CappuccinoSvg from '../../assets/svg/cappuccino.svg';
-import ColdBrewSvg from '../../assets/svg/coldbrew.svg';
-import ExpressoSvg from '../../assets/svg/expresso.svg';
 
 export const CATEGORIES = [
   {
