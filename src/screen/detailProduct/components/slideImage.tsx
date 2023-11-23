@@ -4,12 +4,13 @@ import {
   StyleSheet,
   ImageBackground,
   TouchableOpacity,
+  Text,
 } from 'react-native';
 import BackSvg from '../../../assets/svg/back.svg';
 import StarSvg from '../../../assets/svg/starrr.svg';
+import { COLORS } from '../../../constants/color';
 import AppText from '../../../component/text';
-import {COLORS} from '../../../constants/color';
-
+import globalStyle from '../../../globalStyle';
 interface SlideImage {
   image: string;
   rate: number;
@@ -22,7 +23,7 @@ interface SlideImageProps {
   product: SlideImage;
 }
 
-const SlideImage = ({product}: SlideImageProps): JSX.Element => {
+const SlideImage = ({ product }: SlideImageProps): JSX.Element => {
   return (
     <ImageBackground
       style={style.imageBgWrapper}
@@ -35,28 +36,28 @@ const SlideImage = ({product}: SlideImageProps): JSX.Element => {
         </View>
       </TouchableOpacity>
       <View style={style.infoWrapper}>
-        <View style={style.infoProduct}>
+        <View style={[globalStyle['d-flex'], style.infoProduct]}>
           <View>
             <AppText
+              presetSize="h1"
+              presetFontWeight="700"
               title={product.name}
-              color={COLORS.WHITE}
-              fontSize={28}
-              fontWeight="700"
+              style={style.textName}
             />
             <AppText
+              presetSize="h5"
+              presetFontWeight="400"
               title={product.description}
-              color={COLORS.WHITE}
-              fontSize={12}
-              textAlign="left"
-              lineHeight={12}
+              style={style.textDesc}
             />
           </View>
-          <View style={style.starWrapper}>
+          <View style={[globalStyle['d-flex'], style.starWrapper]}>
             <StarSvg width={16} height={16} />
             <AppText
+              presetSize="h3"
+              presetFontWeight="800"
               title={`${product.rate}`}
-              color={COLORS.WHITE}
-              fontSize={12}
+              style={style.textRate}
             />
           </View>
         </View>
@@ -76,30 +77,41 @@ const style = StyleSheet.create({
     height: 36,
     borderRadius: 50,
     backgroundColor: COLORS.WHITE,
-    justifyContent: 'center',
-    alignItems: 'center',
+
     padding: 10,
   },
   infoWrapper: {
     backgroundColor: COLORS.BLACK1,
     position: 'absolute',
-    bottom: 80,
+    bottom: 50,
     left: 0,
     right: 0,
-    padding: 16,
+    paddingVertical: 40,
+    paddingHorizontal: 16,
   },
   infoProduct: {
-    flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
   },
   starWrapper: {
-    flexDirection: 'row',
     backgroundColor: COLORS.BROWN,
     paddingHorizontal: 12,
     paddingVertical: 8,
     borderRadius: 20,
     columnGap: 3,
+  },
+
+  textName: {
+    color: COLORS.WHITE,
+    lineHeight: 32,
+    textAlign: 'left',
+  },
+  textDesc: {
+    color: COLORS.WHITE,
+    textAlign: 'left',
+    lineHeight: 12,
+  },
+  textRate: {
+    color: COLORS.WHITE,
   },
 });
 export default SlideImage;

@@ -1,7 +1,8 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
+import { COLORS } from '../../../constants/color';
+import globalStyle from '../../../globalStyle';
 import AppText from '../../../component/text';
-import {COLORS} from '../../../constants/color';
 
 interface CategoryItemProps {
   title: string;
@@ -16,24 +17,30 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
 }: CategoryItemProps): JSX.Element => {
   const styleCategory = style(hasBorderRight);
   return (
-    <View style={styleCategory.categoryStyle}>
+    <View style={[globalStyle['d-flex'], styleCategory.categoryStyle]}>
       {Icon && <Icon />}
-      <AppText fontSize={15} title={title} />
+      <AppText
+        title={title}
+        style={styleCategory.textCategory}
+        presetSize="h5"
+        presetFontWeight="700"
+      />
     </View>
   );
 };
 const style = (isBorderRight: boolean) => {
   return StyleSheet.create({
     categoryStyle: {
-      flexDirection: 'row',
-      alignItems: 'center',
       borderWidth: 1,
       borderLeftColor: 'transparent',
       borderTopColor: 'transparent',
       borderBottomColor: 'transparent',
       marginVertical: 6,
-      padding: 8,
+      paddingHorizontal: 14,
       borderRightColor: isBorderRight ? COLORS.BLACK : COLORS.TRANSPARENT,
+    },
+    textCategory: {
+      lineHeight: 16,
     },
   });
 };
